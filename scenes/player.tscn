@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://dikl01stiyrjv"]
+[gd_scene load_steps=8 format=3 uid="uid://dikl01stiyrjv"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ruuj0"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="2_3jryh"]
+[ext_resource type="PackedScene" uid="uid://bj0vfrnftvhcd" path="res://scenes/gun.tscn" id="3_i6f5i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6pab"]
+radius = 39.0
+height = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxbft"]
+radius = 53.0
+height = 138.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_550iv"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyo2p"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(1, -32)
+script = ExtResource("1_ruuj0")
+
+[node name="HappyBoo" parent="." instance=ExtResource("2_3jryh")]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("CapsuleShape2D_b6pab")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_i6f5i")]
+position = Vector2(-38, -39)
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -40)
+shape = SubResource("CapsuleShape2D_jxbft")
+debug_color = Color(0.962309, 0.170251, 0.247839, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -55.0
+offset_top = -131.0
+offset_right = 166.0
+offset_bottom = -104.0
+scale = Vector2(0.488379, 0.508368)
+theme_override_styles/background = SubResource("StyleBoxFlat_550iv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lyo2p")
+value = 100.0
+show_percentage = false
