@@ -45,6 +45,7 @@ position = Vector2(-38, -39)
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -40)

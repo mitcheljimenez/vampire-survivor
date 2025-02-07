@@ -16,5 +16,4 @@ func shoot() -> void:
     shooting_point.add_child(bullet)
 
 func _on_timer_timeout() -> void:
-    print("Timer timeout")
     shoot()
